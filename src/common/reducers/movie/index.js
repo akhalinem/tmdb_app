@@ -2,6 +2,8 @@ import { Routines } from '../../api';
 
 const {
 	getPopular,
+	getTopRated,
+	getUpcoming,
 	getDetails,
 	getCredits,
 	getRecommendations,
@@ -51,29 +53,30 @@ const initialState = {
 		total_results: undefined,
 		total_pages: undefined,
 		results: []
-	},
-	search: {
-		query: ''
 	}
 };
 
 export default (state = initialState, action) => {
 	switch (action.type) {
 		case getPopular.TRIGGER:
+		case getTopRated.TRIGGER:
+		case getUpcoming.TRIGGER:
+		case getDetails.TRIGGER:
+		case getCredits.TRIGGER:
+		case getRecommendations.TRIGGER:
+		case search.TRIGGER:
 			return {
 				...state,
 				loading: true
 			};
 		case getPopular.SUCCESS:
+		case getTopRated.SUCCESS:
+		case getUpcoming.SUCCESS:
+		case search.SUCCESS:
 			return {
 				...state,
 				loading: false,
 				list: action.payload.response
-			};
-		case getDetails.TRIGGER:
-			return {
-				...state,
-				loading: true
 			};
 		case getDetails.SUCCESS:
 			return {
@@ -81,21 +84,11 @@ export default (state = initialState, action) => {
 				loading: false,
 				details: action.payload.response
 			};
-		case getCredits.TRIGGER:
-			return {
-				...state,
-				loading: true
-			};
 		case getCredits.SUCCESS:
 			return {
 				...state,
 				loading: false,
 				credits: action.payload.response
-			};
-		case getRecommendations.TRIGGER:
-			return {
-				...state,
-				loading: true
 			};
 		case getRecommendations.SUCCESS:
 			return {
@@ -103,19 +96,6 @@ export default (state = initialState, action) => {
 				loading: false,
 				recommendations: action.payload.response
 			};
-		case search.TRIGGER: {
-			return {
-				...state,
-				loading: true
-			};
-		}
-		case search.SUCCESS: {
-			return {
-				...state,
-				loading: false,
-				list: action.payload.response
-			};
-		}
 		default: {
 			return state;
 		}

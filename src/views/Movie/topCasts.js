@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import { CardImage } from '../../components';
+import { withRouter } from 'react-router-dom';
 
 class TopCasts extends Component {
 	render() {
@@ -29,7 +30,9 @@ class TopCasts extends Component {
 										subtitle2={cast.name}
 										image={cast.profile_path}
 										onClick={() =>
-											history.push(`/person/${cast.id}`, { id: cast.id })
+											this.props.history.push(`/person/${cast.id}`, {
+												id: cast.id
+											})
 										}
 									/>
 								</Grid>
@@ -42,4 +45,5 @@ class TopCasts extends Component {
 	}
 }
 
+TopCasts = withRouter(TopCasts);
 export default TopCasts;

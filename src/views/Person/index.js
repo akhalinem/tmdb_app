@@ -1,12 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Routines } from 'common/api';
 
 import { Grid, Typography } from '@material-ui/core';
-import { CardImage } from 'components';
+import { CardImage, Spinner } from 'components';
 
 class Person extends React.Component {
+	componentDidMount() {
+		const { id } = this.props.history.location.state;
+		console.log('Person componentDidMount', id);
+		this.props.getPersonDetails(id);
+	}
+
 	render() {
-		console.log('PERSON', this.props);
-		return (
+		console.log('PERSON render', this.props);
+		const { loading, details } = this.props;
+
+		return loading ? (
+			<Spinner />
+		) : (
 			<div style={{ flexGrow: 1, backgroundColor: '#141414' }}>
 				<Grid container style={{ paddingTop: 20 }}>
 					<Grid item md={1} />
@@ -95,7 +107,7 @@ class Person extends React.Component {
 							</div>
 							<Grid container>
 								{[1, 2, 3, 4, 5, 6].map((item, key) => (
-									<Grid item md={3}>
+									<Grid key={key} item md={3}>
 										<CardImage width='60%' height={200} />
 									</Grid>
 								))}
@@ -128,4 +140,21 @@ class Person extends React.Component {
 	}
 }
 
+const mapStateToProps = ({ person }) => {
+	console.log('Person mapStateToProps', person);
+	const { loading, details } = person;
+	return { loading, details };
+};
+
+const mapDispatchToProps = dispatch => {
+	console.log('Person mapDispatchToProps', dispatch);
+	return {
+		getPersonDetails: id => dispatch(Routines.person.getDetails(id))
+	};
+};
+
+Person = connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Person);
 export default Person;

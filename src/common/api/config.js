@@ -1,6 +1,6 @@
 import TokenStorage from '../TokenStorage';
 
-const baseURL = 'https://api.themoviedb.org/3/';
+const baseURL = 'https://api.themoviedb.org/3';
 
 export default {
 	apisauce: {

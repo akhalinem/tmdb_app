@@ -1,19 +1,25 @@
 export default api => {
 	return {
-		getPopular: () => {
-			return api.get('/movie/popular');
+		getPopular: page => {
+			return api.get(`/movie/popular?page=${page}`);
+		},
+		getTopRated: page => {
+			return api.get(`/movie/top_rated?page=${page}`);
+		},
+		getUpcoming: page => {
+			return api.get(`/movie/upcoming?page=${page}`);
 		},
 		getDetails: id => {
 			return api.get(`/movie/${id}`);
 		},
 		getCredits: id => {
-			return api.get(`movie/${id}/credits`);
+			return api.get(`/movie/${id}/credits`);
 		},
 		getRecommendations: id => {
-			return api.get(`movie/${id}/recommendations`);
+			return api.get(`/movie/${id}/recommendations`);
 		},
 		search: query => {
-			return api.get(`search/movie?query=${query}`);
+			return api.get(`/search/movie?query=${query}`);
 		}
 	};
 };

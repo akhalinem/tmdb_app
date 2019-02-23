@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Routines } from 'common/api';
 import { GridContainer } from '../../containers';
+import { Spinner } from 'components';
 
 class Search extends Component {
 	componentDidMount() {
@@ -24,9 +25,7 @@ class Search extends Component {
 	render() {
 		const { list, loading } = this.props;
 		return loading ? (
-			<div>
-				<h1>Loading...</h1>
-			</div>
+			<Spinner />
 		) : (
 			<div style={{ flexGrow: 1, backgroundColor: '#141414' }}>
 				<h1>Search</h1>

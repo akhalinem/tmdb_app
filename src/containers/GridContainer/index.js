@@ -9,14 +9,21 @@ import styles from './styles';
 
 class GridContainer extends Component {
 	render() {
-		const { data, onClick } = this.props;
+		const { data } = this.props;
 
 		return (
 			<div>
 				<Grid container spacing={16}>
 					{data.results.map((movie, key) => (
 						<Grid key={key} item md={3}>
-							<CardButton data={movie} />
+							<CardButton
+								data={{
+									id: movie.id,
+									vote: movie.vote,
+									image: movie.poster_path,
+									title: movie.title
+								}}
+							/>
 						</Grid>
 					))}
 				</Grid>

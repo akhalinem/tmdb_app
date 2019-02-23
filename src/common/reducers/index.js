@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
 import movie from './movie';
-import genre from './genre';
+import person from './person';
 
 export default combineReducers({
 	movie,
-	genre
+	person
 });

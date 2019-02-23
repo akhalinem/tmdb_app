@@ -11,8 +11,17 @@ class Banner extends Component {
 		}
 	}
 
+	// handleGetDuration(duration) {
+	// 	console.log(duration);
+	// 	let hours, minutes;
+	// 	hours = parseInt(duration / 60, 10);
+	// 	minutes = parseInt(duration % 60, 10);
+	// 	console.log('hour, minutes', hours, minutes);
+	// }
+
 	render() {
 		const { data, history } = this.props;
+		console.log('banner render', this.props);
 		return (
 			<Grid
 				id='banner'
@@ -26,7 +35,13 @@ class Banner extends Component {
 					height: 500
 				}}
 			>
-				<div style={{ backgroundColor: 'rgba(12, 40, 100, 0.3)' }}>
+				<div
+					style={{
+						backgroundColor: 'rgba(12, 40, 100, 0.3)',
+						width: '100%',
+						height: '100%'
+					}}
+				>
 					<Grid item md={1} />
 					<Grid item md={10}>
 						<Grid
@@ -109,6 +124,32 @@ class Banner extends Component {
 										{data.runtime}
 									</Typography>
 								</div>
+								<br />
+								{/* <div id='budjet'>
+									<Typography
+										component='title'
+										variant='h6'
+										style={{ color: 'white' }}
+									>
+										Budjet
+									</Typography>
+									<Typography component='p' style={{ color: 'white' }}>
+										{data.budget}
+									</Typography>
+								</div>
+								<br />
+								<div id='revenue'>
+									<Typography
+										component='title'
+										variant='h6'
+										style={{ color: 'white' }}
+									>
+										Revenue
+									</Typography>
+									<Typography component='p' style={{ color: 'white' }}>
+										{data.revenue}
+									</Typography>
+								</div> */}
 							</Grid>
 						</Grid>
 					</Grid>

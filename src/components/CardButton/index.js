@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles';
-import ButtonBase from '@material-ui/core/ButtonBase';
-import Typography from '@material-ui/core/Typography';
+import { ButtonBase, Typography } from '@material-ui/core';
 
 import styles from './styles';
 
@@ -16,7 +15,7 @@ const image = {
 
 function CardButton(props) {
 	const { classes, data, history } = props;
-
+	console.log('CardButton', data);
 	return (
 		<div className={classes.root}>
 			<ButtonBase
@@ -25,12 +24,12 @@ function CardButton(props) {
 				className={classes.image}
 				focusVisibleClassName={classes.focusVisible}
 				style={{ width: image.width }}
-				onClick={() => history.push(`movie/${data.id}`)}
+				onClick={() => history.push(`movie/${data.id}`, { id: data.id })}
 			>
 				<span
 					className={classes.imageSrc}
 					style={{
-						backgroundImage: `url(${image.baseurl}${data.poster_path})`,
+						backgroundImage: `url(${image.baseurl}${data.image})`,
 						border: '2px solid white',
 						borderRadius: 10
 					}}
@@ -53,7 +52,8 @@ function CardButton(props) {
 }
 
 CardButton.propTypes = {
-	classes: PropTypes.object.isRequired
+	classes: PropTypes.object.isRequired,
+	data: PropTypes.object
 };
 
 CardButton = withRouter(CardButton);

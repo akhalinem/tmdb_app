@@ -1,6 +1,6 @@
 import Movie from 'common/api/Movie/sagas';
-import Genre from 'common/api/Genre/sagas';
+import Person from 'common/api/Person/sagas';
 
 export default function sagas(api) {
-	return [Movie(api), Genre(api)];
+	return [Movie(api), Person(api)];
 }

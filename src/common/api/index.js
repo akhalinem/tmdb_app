@@ -8,7 +8,7 @@ import Routines from './routines';
 
 // api calls
 import Movie from './Movie';
-import Genre from './Genre';
+import Person from './Person';
 
 const create = () => {
 	const api = apisauce.create(config.apisauce);
@@ -21,7 +21,7 @@ const create = () => {
 	};
 	return {
 		movie: Movie(api),
-		genre: Genre(api),
+		person: Person(api),
 		setToken: token => {
 			api.setHeader('auth', token);
 		}

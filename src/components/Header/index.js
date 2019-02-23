@@ -7,6 +7,7 @@ import { AppBar, Toolbar, Typography, InputBase } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 
 import styles from './styles';
+import locales from 'localize';
 
 function Header(props) {
 	const [query, setQuery] = useState('');
@@ -17,6 +18,7 @@ function Header(props) {
 		history.replace(`/search?${target.value}`, { query: target.value });
 	};
 	console.log('header');
+	locales.setLanguage('en');
 	return (
 		<div className={classes.root}>
 			<AppBar position='fixed' color='primary'>
@@ -27,7 +29,7 @@ function Header(props) {
 						style={{ cursor: 'pointer' }}
 						onClick={() => history.push('/')}
 					>
-						The Movies
+						{locales.header.title}
 					</Typography>
 					<div className={classes.search}>
 						<div className={classes.searchIcon}>

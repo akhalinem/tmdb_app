@@ -1,7 +1,7 @@
 import movie from './Movie/routines';
-import genre from './Genre/routines';
+import person from './Person/routines';
 
 export default {
 	movie,
-	genre
+	person
 };
