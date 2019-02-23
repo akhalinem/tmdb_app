@@ -6,7 +6,11 @@ let strings = new locales({
 			title: 'The Movie'
 		},
 		home: {
-			filter: {}
+			filter: {
+				popular: 'Popular',
+				top_rated: 'Top Rated',
+				upcoming: 'Upcoming'
+			}
 		},
 		movie: {
 			banner: {},
@@ -20,7 +24,11 @@ let strings = new locales({
 			title: 'Кино'
 		},
 		home: {
-			filter: {}
+			filter: {
+				popular: 'Актуальные',
+				top_rated: 'По оценкам',
+				upcoming: 'Скоро'
+			}
 		},
 		movie: {
 			banner: {},

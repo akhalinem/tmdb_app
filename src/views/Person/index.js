@@ -8,12 +8,12 @@ import { CardImage, Spinner } from 'components';
 class Person extends React.Component {
 	componentDidMount() {
 		const { id } = this.props.history.location.state;
-		console.log('Person componentDidMount', id);
+		// console.log('Person componentDidMount', id);
 		this.props.getPersonDetails(id);
 	}
 
 	render() {
-		console.log('PERSON render', this.props);
+		// console.log('PERSON render', this.props);
 		const { loading, details } = this.props;
 
 		return loading ? (
@@ -141,13 +141,13 @@ class Person extends React.Component {
 }
 
 const mapStateToProps = ({ person }) => {
-	console.log('Person mapStateToProps', person);
+	// console.log('Person mapStateToProps', person);
 	const { loading, details } = person;
 	return { loading, details };
 };
 
 const mapDispatchToProps = dispatch => {
-	console.log('Person mapDispatchToProps', dispatch);
+	// console.log('Person mapDispatchToProps', dispatch);
 	return {
 		getPersonDetails: id => dispatch(Routines.person.getDetails(id))
 	};

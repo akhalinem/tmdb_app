@@ -3,22 +3,29 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, InputBase } from '@material-ui/core';
+import {
+	AppBar,
+	Toolbar,
+	Typography,
+	InputBase,
+	Button
+} from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 
 import styles from './styles';
-import locales from 'localize';
+import locales from '../../localize';
 
 function Header(props) {
 	const [query, setQuery] = useState('');
-	const { classes, history } = props;
+	const { classes, history, setLocale } = props;
 
 	const handleSearch = ({ target }) => {
 		setQuery(target.value);
 		history.replace(`/search?${target.value}`, { query: target.value });
 	};
-	console.log('header');
-	locales.setLanguage('en');
+	// console.log('header');
+	const currentLang = locales.getLanguage();
+
 	return (
 		<div className={classes.root}>
 			<AppBar position='fixed' color='primary'>
@@ -45,6 +52,18 @@ function Header(props) {
 							}}
 						/>
 					</div>
+					<div className={classes.grow} />
+					<div>
+						<Button
+							variant='outlined'
+							color='inherit'
+							onClick={() => setLocale(currentLang == 'en' ? 'ru' : 'en')}
+						>
+							<Typography color='inherit'>
+								{currentLang == 'en' ? 'ru' : 'en'}
+							</Typography>
+						</Button>
+					</div>
 				</Toolbar>
 			</AppBar>
 		</div>
@@ -52,7 +71,8 @@ function Header(props) {
 }
 
 Header.propTypes = {
-	classes: PropTypes.object.isRequired
+	classes: PropTypes.object.isRequired,
+	setLocale: PropTypes.func
 };
 
 Header = withRouter(Header);

@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
 
 import styles from './styles';
+import locales from 'localize';
 
 class ButtonGroup extends React.Component {
 	state = {
@@ -17,6 +18,7 @@ class ButtonGroup extends React.Component {
 	render() {
 		const { classes, filter, onClick } = this.props;
 		const { alignment, toggles } = this.state;
+		console.log('ButtonGroup');
 
 		return (
 			<ToggleButtonGroup
@@ -25,21 +27,24 @@ class ButtonGroup extends React.Component {
 				value={alignment}
 				exclusive
 			>
-				{toggles.map((toggle, key) => (
-					<ToggleButton
-						key={key}
-						value={toggle.value}
-						onClick={() => onClick(toggle.type)}
-						style={{
-							color: 'white',
-							border: '1px solid white',
-							color: filter === toggle.type ? 'black' : 'white',
-							backgroundColor: filter === toggle.type ? 'white' : 'black'
-						}}
-					>
-						{toggle.label}
-					</ToggleButton>
-				))}
+				{toggles.map((toggle, key) => {
+					console.log('TTT', locales.home.filter[toggle.type]);
+					return (
+						<ToggleButton
+							key={key}
+							value={toggle.value}
+							onClick={() => onClick(toggle.type)}
+							style={{
+								color: 'white',
+								border: '1px solid white',
+								color: filter === toggle.type ? 'black' : 'white',
+								backgroundColor: filter === toggle.type ? 'white' : 'black'
+							}}
+						>
+							{locales.home.filter[toggle.type]}
+						</ToggleButton>
+					);
+				})}
 			</ToggleButtonGroup>
 		);
 	}

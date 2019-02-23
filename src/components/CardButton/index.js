@@ -15,7 +15,7 @@ const image = {
 
 function CardButton(props) {
 	const { classes, data, history } = props;
-	console.log('CardButton', data);
+	// console.log('CardButton', data);
 	return (
 		<div className={classes.root}>
 			<ButtonBase

@@ -1,22 +1,19 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Wrapper from '../layouts/wrapper';
+import Layout from 'layouts/mainLayout';
 import { Home, Movie, Person, Search } from '../views';
 
-import { Header } from '../components';
-
-const routes = [
-	{ path: '/', exact: true, component: Home },
-	{ path: '/movie', component: Movie },
-	{ path: '/person', component: Person },
-	{ path: '/search', component: Search }
-];
-
 export default () => {
+	const routes = [
+		{ path: '/', exact: true, component: Home },
+		{ path: '/movie', component: Movie },
+		{ path: '/person', component: Person },
+		{ path: '/search', component: Search }
+	];
+
 	return (
-		<Wrapper>
-			<Header />
+		<Layout>
 			<Switch>
 				{routes.map((route, key) => (
 					<Route
@@ -27,6 +24,6 @@ export default () => {
 					/>
 				))}
 			</Switch>
-		</Wrapper>
+		</Layout>
 	);
 };

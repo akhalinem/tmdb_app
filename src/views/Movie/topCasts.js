@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 class TopCasts extends Component {
 	render() {
 		const { data, history } = this.props;
-		console.log('topcast', this.props);
+		// console.log('topcast', this.props);
 
 		return (
 			<Grid container id='top casts'>

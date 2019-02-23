@@ -8,6 +8,8 @@ import TopCasts from './topCasts';
 import Recommendations from './recommendations';
 
 class Movie extends Component {
+	state = {};
+
 	componentDidMount() {
 		console.log('Mover componentDidMount', this.props);
 		const {
@@ -29,12 +31,15 @@ class Movie extends Component {
 		return loading ? (
 			<Spinner />
 		) : (
-			<div style={{ flexGrow: 1, backgroundColor: '#141414' }}>
+			<div id='movie'>
 				<Banner data={details} />
 				<br />
 				<TopCasts data={credits} />
 				<div style={{ height: 100 }} />
-				<Recommendations data={recommendations} />
+				<Recommendations
+					data={recommendations}
+					onClick={id => this.props.getMovieDetails(id)}
+				/>
 			</div>
 		);
 	}

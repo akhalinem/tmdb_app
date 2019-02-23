@@ -21,7 +21,7 @@ class Banner extends Component {
 
 	render() {
 		const { data, history } = this.props;
-		console.log('banner render', this.props);
+		// console.log('banner render', this.props);
 		return (
 			<Grid
 				id='banner'

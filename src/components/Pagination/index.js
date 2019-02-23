@@ -28,7 +28,7 @@ class Pagination extends React.Component {
 				paginations.push({ label: i.toString(), page: i });
 			}
 		}
-		console.log('page', page);
+		// console.log('page', page);
 		return (
 			<ToggleButtonGroup
 				className={classes.paginationContainer}

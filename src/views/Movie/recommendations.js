@@ -30,8 +30,7 @@ class Recommendations extends Component {
 											this.props.history.push(`/movie/${recommend.id}`, {
 												id: recommend.id
 											});
-											window.scrollTo({ top: 0 });
-											window.location.reload();
+											this.props.onClick(recommend.id);
 										}}
 									/>
 								</Grid>

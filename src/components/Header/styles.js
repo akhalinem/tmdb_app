@@ -3,7 +3,7 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
 const styles = theme => ({
 	root: {
 		flexGrow: 1,
-		marginBottom: 70
+		marginBottom: 56
 	},
 	search: {
 		position: 'relative',
@@ -43,6 +43,9 @@ const styles = theme => ({
 		[theme.breakpoints.up('md')]: {
 			width: 200
 		}
+	},
+	grow: {
+		flexGrow: 1
 	}
 });
 

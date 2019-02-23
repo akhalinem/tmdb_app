@@ -7,12 +7,16 @@ class Spinner extends Component {
 			<div
 				style={{
 					position: 'fixed',
-					backgroundColor: 'transparent',
-					top: 90,
-					zIndex: 1
+					backgroundColor: 'inherit',
+					width: window.screen.width,
+					height: window.screen.height,
+					display: 'flex',
+					flex: 1,
+					justifyContent: 'center',
+					paddingTop: '10%'
 				}}
 			>
-				<ClipLoader color={'white'} size={100} />
+				<ClipLoader color='white' size={100} />
 			</div>
 		);
 	}

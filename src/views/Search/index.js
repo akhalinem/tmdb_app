@@ -7,7 +7,7 @@ import { Spinner } from 'components';
 class Search extends Component {
 	componentDidMount() {
 		this.props.searchMovies(this.props.history.location.state.query);
-		console.log('search componentDidMount');
+		// console.log('search componentDidMount');
 	}
 
 	componentDidUpdate() {
@@ -18,7 +18,7 @@ class Search extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		console.log('search componentWillReceiveProps', this.props, nextProps);
+		// console.log('search componentWillReceiveProps', this.props, nextProps);
 		// this.props.searchMovies(this.props.history.location.state.query);
 	}
 
