@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import { CardImage } from '../../components';
-import { withRouter } from 'react-router-dom';
 
 class Recommendations extends Component {
 	render() {
-		const { data, history } = this.props;
-		console.log('recommendations', this.props);
+		const { data, onClick } = this.props;
+		// console.log('recommendations', this.props);
 
 		return (
 			<Grid container id='top casts'>
@@ -26,12 +25,7 @@ class Recommendations extends Component {
 									<CardImage
 										image={recommend.poster_path}
 										hasSubtitle
-										onClick={() => {
-											this.props.history.push(`/movie/${recommend.id}`, {
-												id: recommend.id
-											});
-											this.props.onClick(recommend.id);
-										}}
+										onClick={() => onClick({ id: recommend.id })}
 									/>
 								</Grid>
 							))}
@@ -43,5 +37,4 @@ class Recommendations extends Component {
 	}
 }
 
-Recommendations = withRouter(Recommendations);
 export default Recommendations;

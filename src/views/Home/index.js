@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Routines } from 'common/api';
 import { GridContainer } from '../../containers';
-import { ButtonGroup, Pagination, Spinner } from 'components';
+import { Pagination } from 'components';
+
+import Filter from './filter';
 
 class Home extends Component {
 	state = {
@@ -40,27 +42,15 @@ class Home extends Component {
 
 	render() {
 		const { filter, page } = this.state;
-		const { list, loading } = this.props;
+		const { list } = this.props;
 
-		return loading ? (
-			<Spinner />
-		) : (
-			<div
-				style={{
-					flexGrow: 1,
-					backgroundColor: '#141414'
-				}}
-			>
-				<div
-					id='toolbar'
-					style={{ display: 'flex', justifyContent: 'flex-end' }}
-				>
-					<ButtonGroup
-						filter={filter}
-						onClick={filter => this.handleFilterClick(filter)}
-					/>
-				</div>
-				<GridContainer data={list} />
+		return (
+			<div id='home'>
+				<Filter
+					filter={filter}
+					onClick={filter => this.handleFilterClick(filter)}
+				/>
+				<GridContainer data={list.data} />
 				<div
 					id='pagination'
 					style={{ display: 'flex', justifyContent: 'center' }}
@@ -75,9 +65,10 @@ class Home extends Component {
 	}
 }
 
-const mapStateToProps = state => {
-	const { list, loading, search } = state.movie;
-	return { list, loading, search };
+const mapStateToProps = ({ movie }) => {
+	// console.log('TTT', movie.list);
+	const { list } = movie;
+	return { list };
 };
 
 const mapDispatchToProps = dispatch => ({

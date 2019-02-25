@@ -18,7 +18,7 @@ class ButtonGroup extends React.Component {
 	render() {
 		const { classes, filter, onClick } = this.props;
 		const { alignment, toggles } = this.state;
-		console.log('ButtonGroup');
+		// console.log('ButtonGroup');
 
 		return (
 			<ToggleButtonGroup
@@ -28,7 +28,7 @@ class ButtonGroup extends React.Component {
 				exclusive
 			>
 				{toggles.map((toggle, key) => {
-					console.log('TTT', locales.home.filter[toggle.type]);
+					// console.log('TTT', locales.home.filter[toggle.type]);
 					return (
 						<ToggleButton
 							key={key}

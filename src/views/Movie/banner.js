@@ -11,16 +11,8 @@ class Banner extends Component {
 		}
 	}
 
-	// handleGetDuration(duration) {
-	// 	console.log(duration);
-	// 	let hours, minutes;
-	// 	hours = parseInt(duration / 60, 10);
-	// 	minutes = parseInt(duration % 60, 10);
-	// 	console.log('hour, minutes', hours, minutes);
-	// }
-
 	render() {
-		const { data, history } = this.props;
+		const { data } = this.props;
 		// console.log('banner render', this.props);
 		return (
 			<Grid
@@ -37,7 +29,7 @@ class Banner extends Component {
 			>
 				<div
 					style={{
-						backgroundColor: 'rgba(12, 40, 100, 0.3)',
+						backgroundColor: 'rgba(0, 0, 0, 0.5)',
 						width: '100%',
 						height: '100%'
 					}}
@@ -125,31 +117,6 @@ class Banner extends Component {
 									</Typography>
 								</div>
 								<br />
-								{/* <div id='budjet'>
-									<Typography
-										component='title'
-										variant='h6'
-										style={{ color: 'white' }}
-									>
-										Budjet
-									</Typography>
-									<Typography component='p' style={{ color: 'white' }}>
-										{data.budget}
-									</Typography>
-								</div>
-								<br />
-								<div id='revenue'>
-									<Typography
-										component='title'
-										variant='h6'
-										style={{ color: 'white' }}
-									>
-										Revenue
-									</Typography>
-									<Typography component='p' style={{ color: 'white' }}>
-										{data.revenue}
-									</Typography>
-								</div> */}
 							</Grid>
 						</Grid>
 					</Grid>

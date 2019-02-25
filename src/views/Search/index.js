@@ -2,42 +2,36 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Routines } from 'common/api';
 import { GridContainer } from '../../containers';
-import { Spinner } from 'components';
+import { Pagination } from 'components';
 
 class Search extends Component {
+	state = {
+		page: 1
+	};
+
 	componentDidMount() {
 		this.props.searchMovies(this.props.history.location.state.query);
-		// console.log('search componentDidMount');
 	}
 
-	componentDidUpdate() {
-		const { query } = this.props.location.state;
-		if (query.length == '') {
-			this.props.history.push('/');
-		}
-	}
-
-	componentWillReceiveProps(nextProps) {
-		// console.log('search componentWillReceiveProps', this.props, nextProps);
-		// this.props.searchMovies(this.props.history.location.state.query);
-	}
+	// handlePagination = page => {
+	// 	this.setState({ page });
+	// 	this.props.searchMovies();
+	// };
 
 	render() {
-		const { list, loading } = this.props;
-		return loading ? (
-			<Spinner />
-		) : (
-			<div style={{ flexGrow: 1, backgroundColor: '#141414' }}>
-				<h1>Search</h1>
-				<GridContainer data={list} />
+		const { list } = this.props;
+		return (
+			<div>
+				<GridContainer data={list.data} />
+				{/* <Pagination page={page} onClick={page => this.handlePagination(page)} /> */}
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = state => {
-	const { loading, list } = state.movie;
-	return { loading, list };
+const mapStateToProps = ({ movie }) => {
+	const { list } = movie;
+	return { list };
 };
 
 const mapDispatchToProps = dispatch => {

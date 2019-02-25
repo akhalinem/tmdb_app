@@ -8,7 +8,8 @@ import {
 	Toolbar,
 	Typography,
 	InputBase,
-	Button
+	Button,
+	IconButton
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 
@@ -19,54 +20,50 @@ function Header(props) {
 	const [query, setQuery] = useState('');
 	const { classes, history, setLocale } = props;
 
-	const handleSearch = ({ target }) => {
-		setQuery(target.value);
-		history.replace(`/search?${target.value}`, { query: target.value });
+	const handleSearch = () => {
+		history.push(`/search?${query}`, { query });
 	};
-	// console.log('header');
 	const currentLang = locales.getLanguage();
 
 	return (
-		<div className={classes.root}>
-			<AppBar position='fixed' color='primary'>
-				<Toolbar>
-					<Typography
-						variant='h6'
+		<AppBar color='primary' position='sticky'>
+			<Toolbar>
+				<Typography
+					variant='h6'
+					color='inherit'
+					style={{ cursor: 'pointer' }}
+					onClick={() => history.push('/')}
+				>
+					{locales.header.title}
+				</Typography>
+				<div className={classes.search}>
+					<IconButton onClick={handleSearch}>
+						<SearchIcon style={{ color: '#fff' }} />
+					</IconButton>
+					<InputBase
+						placeholder={locales.header.search}
+						value={query}
+						onChange={e => setQuery(e.target.value)}
+						classes={{
+							root: classes.inputRoot,
+							input: classes.inputInput
+						}}
+					/>
+				</div>
+				<div className={classes.grow} />
+				<div>
+					<Button
+						variant='outlined'
 						color='inherit'
-						style={{ cursor: 'pointer' }}
-						onClick={() => history.push('/')}
+						onClick={() => setLocale(currentLang == 'en' ? 'ru' : 'en')}
 					>
-						{locales.header.title}
-					</Typography>
-					<div className={classes.search}>
-						<div className={classes.searchIcon}>
-							<SearchIcon />
-						</div>
-						<InputBase
-							placeholder='Search Movies…'
-							value={query}
-							onChange={handleSearch}
-							classes={{
-								root: classes.inputRoot,
-								input: classes.inputInput
-							}}
-						/>
-					</div>
-					<div className={classes.grow} />
-					<div>
-						<Button
-							variant='outlined'
-							color='inherit'
-							onClick={() => setLocale(currentLang == 'en' ? 'ru' : 'en')}
-						>
-							<Typography color='inherit'>
-								{currentLang == 'en' ? 'ru' : 'en'}
-							</Typography>
-						</Button>
-					</div>
-				</Toolbar>
-			</AppBar>
-		</div>
+						<Typography color='inherit'>
+							{currentLang == 'en' ? 'ru' : 'en'}
+						</Typography>
+					</Button>
+				</div>
+			</Toolbar>
+		</AppBar>
 	);
 }
 

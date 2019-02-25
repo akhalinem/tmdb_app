@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import { CardImage } from '../../components';
-import { withRouter } from 'react-router-dom';
 
 class TopCasts extends Component {
 	render() {
-		const { data, history } = this.props;
+		const { data, onClick } = this.props;
 		// console.log('topcast', this.props);
 
 		return (
@@ -30,9 +29,7 @@ class TopCasts extends Component {
 										subtitle2={cast.name}
 										image={cast.profile_path}
 										onClick={() =>
-											this.props.history.push(`/person/${cast.id}`, {
-												id: cast.id
-											})
+											onClick(`/person/${cast.id}`, { id: cast.id })
 										}
 									/>
 								</Grid>
@@ -45,5 +42,4 @@ class TopCasts extends Component {
 	}
 }
 
-TopCasts = withRouter(TopCasts);
 export default TopCasts;

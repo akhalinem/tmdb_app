@@ -12,22 +12,20 @@ class GridContainer extends Component {
 		const { data } = this.props;
 
 		return (
-			<div>
-				<Grid container spacing={16}>
-					{data.results.map((movie, key) => (
-						<Grid key={key} item md={3}>
-							<CardButton
-								data={{
-									id: movie.id,
-									vote: movie.vote,
-									image: movie.poster_path,
-									title: movie.title
-								}}
-							/>
-						</Grid>
-					))}
-				</Grid>
-			</div>
+			<Grid container spacing={16}>
+				{data.results.map((movie, key) => (
+					<Grid key={key} item md={3}>
+						<CardButton
+							data={{
+								id: movie.id,
+								vote: movie.vote,
+								image: movie.poster_path,
+								title: movie.title
+							}}
+						/>
+					</Grid>
+				))}
+			</Grid>
 		);
 	}
 }

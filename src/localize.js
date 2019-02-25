@@ -3,6 +3,7 @@ import locales from 'react-localization';
 let strings = new locales({
 	en: {
 		header: {
+			search: 'Search for a movie, tv show, person...',
 			title: 'The Movie'
 		},
 		home: {
@@ -21,6 +22,7 @@ let strings = new locales({
 	},
 	ru: {
 		header: {
+			search: 'Найти фильм, сериал, актера',
 			title: 'Кино'
 		},
 		home: {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Routines } from '../../common/api';
-import { Spinner } from 'components';
 
 import Banner from './banner';
 import TopCasts from './topCasts';
@@ -11,7 +10,7 @@ class Movie extends Component {
 	state = {};
 
 	componentDidMount() {
-		console.log('Mover componentDidMount', this.props);
+		// console.log('Movie componentDidMount', this.props);
 		const {
 			getMovieDetails,
 			getMovieCredits,
@@ -19,35 +18,46 @@ class Movie extends Component {
 		} = this.props;
 
 		const { id } = this.props.history.location.state;
-
-		getMovieDetails(id);
-		getMovieCredits(id);
-		getMovieRecommendations(id);
+		window.scrollTo({ top: 0 });
+		return [
+			getMovieDetails(id),
+			getMovieCredits(id),
+			getMovieRecommendations(id)
+		];
 	}
 
 	render() {
-		const { loading, details, credits, recommendations, history } = this.props;
+		const { details, credits, recommendations, history } = this.props;
 
-		return loading ? (
-			<Spinner />
-		) : (
+		return (
 			<div id='movie'>
-				<Banner data={details} />
+				<Banner
+					data={details.data}
+					onClick={(path, params) => history.push(path, params)}
+				/>
 				<br />
-				<TopCasts data={credits} />
+				<TopCasts
+					data={credits.data}
+					onClick={(path, params) => history.push(path, params)}
+				/>
 				<div style={{ height: 100 }} />
 				<Recommendations
-					data={recommendations}
-					onClick={id => this.props.getMovieDetails(id)}
+					data={recommendations.data}
+					onClick={params => [
+						this.props.getMovieDetails(params.id),
+						this.props.getMovieCredits(params.id),
+						this.props.getMovieRecommendations(params.id),
+						window.scrollTo({ top: 0 })
+					]}
 				/>
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = state => {
-	const { loading, details, credits, recommendations } = state.movie;
-	return { loading, details, credits, recommendations };
+const mapStateToProps = ({ movie }) => {
+	const { details, credits, recommendations } = movie;
+	return { details, credits, recommendations };
 };
 const mapDispatchToProps = dispatch => {
 	const { getDetails, getCredits, getRecommendations } = Routines.movie;

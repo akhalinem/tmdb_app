@@ -11,48 +11,68 @@ const {
 } = Routines.movie;
 
 const initialState = {
-	loading: undefined,
+	loading: false,
 	credits: {
-		id: undefined,
-		cast: [],
-		crew: []
+		loading: false,
+		error: false,
+		success: undefined,
+		data: {
+			id: undefined,
+			cast: [],
+			crew: []
+		}
 	},
 	recommendations: {
-		page: undefined,
-		results: []
+		loading: false,
+		error: false,
+		success: undefined,
+		data: {
+			page: undefined,
+			results: []
+		}
 	},
 	details: {
-		adult: undefined,
-		backdrop_path: undefined,
-		belongs_to_collection: undefined,
-		budget: undefined,
-		genres: [],
-		homepage: undefined,
-		id: undefined,
-		imdb_id: undefined,
-		original_language: undefined,
-		original_title: undefined,
-		overview: undefined,
-		popularity: undefined,
-		poster_path: undefined,
-		production_companies: [],
-		production_countries: [],
-		release_date: undefined,
-		revenue: undefined,
-		runtime: undefined,
-		spoken_languages: [],
-		status: undefined,
-		tagline: undefined,
-		title: undefined,
-		video: undefined,
-		vote_average: undefined,
-		vote_count: undefined
+		loading: false,
+		error: false,
+		success: undefined,
+		data: {
+			adult: undefined,
+			backdrop_path: undefined,
+			belongs_to_collection: undefined,
+			budget: undefined,
+			genres: [],
+			homepage: undefined,
+			id: undefined,
+			imdb_id: undefined,
+			original_language: undefined,
+			original_title: undefined,
+			overview: undefined,
+			popularity: undefined,
+			poster_path: undefined,
+			production_companies: [],
+			production_countries: [],
+			release_date: undefined,
+			revenue: undefined,
+			runtime: undefined,
+			spoken_languages: [],
+			status: undefined,
+			tagline: undefined,
+			title: undefined,
+			video: undefined,
+			vote_average: undefined,
+			vote_count: undefined
+		}
 	},
 	list: {
-		page: undefined,
-		total_results: undefined,
-		total_pages: undefined,
-		results: []
+		loading: false,
+		error: false,
+		success: undefined,
+		data: {
+			page: undefined,
+			total_results: undefined,
+			total_pages: undefined,
+			results: []
+		}
 	}
 };
 
@@ -61,13 +81,37 @@ export default (state = initialState, action) => {
 		case getPopular.TRIGGER:
 		case getTopRated.TRIGGER:
 		case getUpcoming.TRIGGER:
-		case getDetails.TRIGGER:
-		case getCredits.TRIGGER:
-		case getRecommendations.TRIGGER:
 		case search.TRIGGER:
 			return {
 				...state,
-				loading: true
+				list: {
+					...state.list,
+					loading: true
+				}
+			};
+		case getDetails.TRIGGER:
+			return {
+				...state,
+				details: {
+					...state.details,
+					loading: true
+				}
+			};
+		case getCredits.TRIGGER:
+			return {
+				...state,
+				credits: {
+					...state.credits,
+					loading: true
+				}
+			};
+		case getRecommendations.TRIGGER:
+			return {
+				...state,
+				recommendations: {
+					...state.recommendations,
+					loading: true
+				}
 			};
 		case getPopular.SUCCESS:
 		case getTopRated.SUCCESS:
@@ -75,29 +119,47 @@ export default (state = initialState, action) => {
 		case search.SUCCESS:
 			return {
 				...state,
-				loading: false,
-				list: action.payload.response
+				list: {
+					loading: false,
+					data: action.payload.response
+				}
 			};
 		case getDetails.SUCCESS:
 			return {
 				...state,
-				loading: false,
-				details: action.payload.response
+				details: {
+					...state.details,
+					loading: false,
+					success: true,
+					data: action.payload.response
+				}
 			};
 		case getCredits.SUCCESS:
 			return {
 				...state,
-				loading: false,
-				credits: action.payload.response
+				credits: {
+					...state.credits,
+					loading: false,
+					success: true,
+					data: action.payload.response
+				}
 			};
 		case getRecommendations.SUCCESS:
 			return {
 				...state,
-				loading: false,
-				recommendations: action.payload.response
+				recommendations: {
+					...state.recommendations,
+					success: true,
+					data: action.payload.response
+				}
 			};
 		default: {
-			return state;
+			const { list, credits, details } = state;
+			const loading = list.loading || credits.loading || details.loading;
+			return {
+				...state,
+				loading
+			};
 		}
 	}
 };
